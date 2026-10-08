@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>图片转SVG矢量化 · 证照工坊</title>
+<meta name="description" content="图片转SVG在线工具，一键矢量化，无限放大不模糊，可调颜色数量与平滑度。">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%231877F2'/%3E%3Ctext x='32' y='43' font-size='30' text-anchor='middle' fill='white' font-family='sans-serif' font-weight='bold'%3E%E8%AF%81%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="assets/css/style.css">
+<script src="https://cdn.jsdelivr.net/npm/imagetracerjs@1.2.6/imagetracer_v1.2.6.min.js"></script>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap">
+    <a class="logo" href="index.html">
+      <span class="logo-mark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg></span>
+      证照工坊
+    </a>
+    <nav class="main-nav">
+      <a href="index.html">首页</a>
+      <a href="idphoto.html">证件照制作</a>
+      <a href="ico.html">ICO图标</a>
+      <a href="svg.html" class="active">SVG转换</a>
+    </nav>
+  </div>
+</header>
+
+<div class="page-head">
+  <div class="wrap">
+    <h1>✒️ 图片转 SVG</h1>
+    <p>一键矢量化 · 无限放大不模糊 · 可在 Illustrator / Figma 中继续编辑</p>
+  </div>
+</div>
+
+<div class="wrap">
+  <div class="steps">
+    <span class="step done" id="step1"><span class="n">1</span>上传图片</span><span class="arrow">→</span>
+    <span class="step" id="step2"><span class="n">2</span>调整参数</span><span class="arrow">→</span>
+    <span class="step" id="step3"><span class="n">3</span>下载 SVG</span>
+  </div>
+
+  <div class="tool-grid">
+    <!-- 左：上传 -->
+    <section class="panel">
+      <h2><span class="p-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="9" cy="9" r="2"/><path d="M21 15l-5-5L5 21"/></svg></span>上传图片</h2>
+      <div class="dropzone" id="dropzone">
+        <div class="dz-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg></div>
+        <b>拖拽图片到此处，或点击上传</b>
+        <small>支持 PNG / JPG / WEBP · 最大 10MB</small>
+        <input type="file" id="fileInput" accept="image/png,image/jpeg,image/webp" hidden>
+      </div>
+      <div class="preview-box" id="origBox" style="display:none">
+        <div class="cap">原始图片预览</div>
+        <img id="origPreview" alt="原始图片">
+        <div class="file-info" id="fileInfo"></div>
+      </div>
+      <div class="grow"></div>
+    </section>
+
+    <!-- 中：参数 -->
+    <section class="panel">
+      <h2><span class="p-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="21" x2="4" y2="14"/><line x1="4" y1="10" x2="4" y2="3"/><line x1="12" y1="21" x2="12" y2="12"/><line x1="12" y1="8" x2="12" y2="3"/><line x1="20" y1="21" x2="20" y2="16"/><line x1="20" y1="12" x2="20" y2="3"/><line x1="1" y1="14" x2="7" y2="14"/><line x1="9" y1="8" x2="15" y2="8"/><line x1="17" y1="16" x2="23" y2="16"/></svg></span>转换参数</h2>
+      <div class="slider-row">
+        <div class="lab"><span>颜色数量</span><span class="val" id="colorVal">8 色</span></div>
+        <input type="range" id="colorRange" min="2" max="16" value="8">
+      </div>
+      <div class="slider-row">
+        <div class="lab"><span>平滑度</span><span class="val" id="smoothVal">65%</span></div>
+        <input type="range" id="smoothRange" min="0" max="100" value="65">
+      </div>
+      <div class="switch-row">
+        <div class="t"><b>保留细节</b><small>保留更多细节，生成的路径更复杂</small></div>
+        <label class="switch"><input type="checkbox" id="detailToggle" checked><span class="tr"></span></label>
+      </div>
+      <div class="tip-box">ⓘ 建议：颜色数量 6–12，平滑度 50%–80% 以获得最佳效果。色块分明的插画、Logo 转换效果最好。</div>
+      <div class="grow"></div>
+    </section>
+
+    <!-- 右：预览下载 -->
+    <section class="panel">
+      <h2><span class="p-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19l7-7 3 3-7 7-3-3z"/><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"/><circle cx="11" cy="11" r="2"/></svg></span>转换后 SVG 预览</h2>
+      <div class="svg-preview-box grow" id="svgBox">
+        <span class="svg-empty">上传图片后自动转换<br>此处实时预览矢量效果</span>
+      </div>
+      <div style="margin-top:16px">
+        <button class="btn btn-primary btn-block btn-lg" id="dlBtn" disabled>⬇ 下载 SVG 文件</button>
+        <p class="hint" id="svgInfo">SVG 矢量格式 · 可无限放大</p>
+      </div>
+    </section>
+  </div>
+
+  <p class="disclaimer">提示：下载的 SVG 可在 Illustrator、Figma、剪映等工具中直接编辑</p>
+</div>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div>© 2026 证照工坊 · 所有处理均在本地浏览器完成，图片不会上传</div>
+  </div>
+</footer>
+
+<div class="toast" id="toast"></div>
+<script src="assets/js/svg.js"></script>
+</body>
+</html>

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ICO图标在线制作 · 证照工坊</title>
+<meta name="description" content="PNG转ICO在线工具，16/32/64/128/256/512PX多尺寸打包下载，可做网站favicon。">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%231877F2'/%3E%3Ctext x='32' y='43' font-size='30' text-anchor='middle' fill='white' font-family='sans-serif' font-weight='bold'%3E%E8%AF%81%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap">
+    <a class="logo" href="index.html">
+      <span class="logo-mark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg></span>
+      证照工坊
+    </a>
+    <nav class="main-nav">
+      <a href="index.html">首页</a>
+      <a href="idphoto.html">证件照制作</a>
+      <a href="ico.html" class="active">ICO图标</a>
+      <a href="svg.html">SVG转换</a>
+    </nav>
+  </div>
+</header>
+
+<div class="page-head">
+  <div class="wrap">
+    <h1>🧩 ICO 图标制作器</h1>
+    <p>在线 · 免费 — PNG 一键转 ICO，多尺寸打包</p>
+  </div>
+</div>
+
+<div class="wrap">
+  <div class="steps">
+    <span class="step done" id="step1"><span class="n">1</span>上传</span><span class="arrow">→</span>
+    <span class="step" id="step2"><span class="n">2</span>选择尺寸</span><span class="arrow">→</span>
+    <span class="step" id="step3"><span class="n">3</span>下载</span>
+  </div>
+
+  <div class="tool-grid" style="grid-template-columns:1fr 1.2fr">
+    <!-- 左：上传 -->
+    <section class="panel">
+      <h2><span class="p-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg></span>上传文件</h2>
+      <div class="dropzone" id="dropzone">
+        <div class="dz-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg></div>
+        <b>上传 PNG 图片</b>
+        <small>拖拽图片到此处，或点击选择文件<br>支持 PNG / JPG，最大 5MB，建议 512×512 以上</small>
+        <input type="file" id="fileInput" accept="image/png,image/jpeg" hidden>
+      </div>
+      <div class="preview-box" id="origBox" style="display:none">
+        <div class="cap">预览效果</div>
+        <img id="origPreview" alt="图标预览" style="max-height:150px">
+        <div class="file-info" id="fileInfo"></div>
+      </div>
+      <div class="grow"></div>
+    </section>
+
+    <!-- 右：尺寸 + 生成 -->
+    <section class="panel">
+      <h2><span class="p-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg></span>选择尺寸</h2>
+      <p style="font-size:14px;color:var(--muted);margin-bottom:14px">选择需要生成的尺寸（可多选）</p>
+      <div class="check-list" id="checkList"></div>
+      <h2 style="margin-top:8px"><span class="p-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg></span>生成预览</h2>
+      <div class="ico-previews" id="icoPreviews">
+        <span class="svg-empty">上传图片后在此预览各尺寸效果</span>
+      </div>
+      <button class="btn btn-primary btn-block btn-lg" id="genBtn" disabled>⬇ 生成并下载 .ico 文件</button>
+      <p class="hint">将合并为标准 .ico 格式，可用于网站 favicon 或桌面应用</p>
+    </section>
+  </div>
+
+  <p class="disclaimer">提示：16PX 适合浏览器标签小图标，256 / 512PX 适合高清显示，勾选多个尺寸可一次打包</p>
+</div>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div>© 2026 证照工坊 · 所有处理均在本地浏览器完成，图片不会上传</div>
+  </div>
+</footer>
+
+<div class="toast" id="toast"></div>
+<script src="assets/js/ico.js"></script>
+</body>
+</html>
