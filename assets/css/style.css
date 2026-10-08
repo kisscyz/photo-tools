@@ -303,6 +303,11 @@ input[type=range]{width:100%;accent-color:var(--blue);height:28px;cursor:pointer
   .disclaimer{font-size:12px;margin:4px 0 22px;padding:0 4px}
   .site-footer{font-size:12px;padding:20px 0 28px}
   .toast{bottom:24px;font-size:13px;max-width:92vw}
+
+  /* 手机首页：隐藏菜单和 banner，更简洁 */
+  .page-home .main-nav{display:none}
+  .page-home .hero{display:none}
+  .page-home .cards{margin-top:16px}
 }
 
 /* privacy banner */
