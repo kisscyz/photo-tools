@@ -238,3 +238,13 @@ input[type=range]{width:100%;accent-color:var(--blue);height:28px;cursor:pointer
   .main-nav a{padding:8px 10px;font-size:14px}
   .swatches{grid-template-columns:repeat(4,1fr)}
 }
+
+/* privacy banner */
+.privacy-banner{
+  display:flex;gap:10px;align-items:flex-start;
+  background:rgba(255,255,255,.94);
+  border:1px solid #bcd6fb;border-left:4px solid var(--blue);
+  border-radius:14px;padding:13px 17px;font-size:13.5px;color:#2b4a77;line-height:1.7;
+  margin-bottom:22px;box-shadow:var(--shadow);
+}
+.privacy-banner b{color:var(--blue)}

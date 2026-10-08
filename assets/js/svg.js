@@ -34,6 +34,7 @@
     if (!/^image\//.test(file.type)) { toast('请选择图片文件', true); return; }
     if (file.size > 10 * 1024 * 1024) { toast('图片超过 10MB，请压缩后重试', true); return; }
     var url = URL.createObjectURL(file);
+    PhotoPrivacy.track(url);
     var img = new Image();
     img.onload = function () {
       state.img = img;
@@ -130,6 +131,7 @@
     document.body.appendChild(a);
     a.click();
     setTimeout(function () { document.body.removeChild(a); URL.revokeObjectURL(a.href); }, 500);
+    PhotoPrivacy.scheduleAutoDelete();
     toast('✔ SVG 文件已开始下载');
   });
 

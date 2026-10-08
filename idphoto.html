@@ -40,6 +40,8 @@
     <span class="step" id="step4"><span class="n">4</span>下载</span>
   </div>
 
+  <div class="privacy-banner">🔒 <span><b>隐私承诺：</b>本工具纯本地运行，您的照片仅在浏览器内存中处理，<b>不上传服务器、不保存、不记录历史</b>；下载完成后 <b>24 小时内自动彻底删除</b>，可放心使用。</span></div>
+
   <div class="tool-grid">
     <!-- 左：原始照片 -->
     <section class="panel">
@@ -52,7 +54,7 @@
       </div>
       <div class="preview-box" id="origBox" style="display:none">
         <div class="cap">原片预览</div>
-        <img id="origPreview" alt="原片预览">
+        <img id="origPreview" alt="原片预览" data-private>
         <div class="file-info" id="fileInfo"></div>
       </div>
       <div class="grow"></div>
@@ -80,7 +82,7 @@
     <section class="panel">
       <h2><span class="p-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg></span>效果预览</h2>
       <div class="result-frame grow" style="display:flex;align-items:center;justify-content:center;flex-direction:column">
-        <img id="resultImg" alt="证件照预览" style="display:none">
+        <img id="resultImg" alt="证件照预览" style="display:none" data-private>
         <div class="svg-empty" id="resultEmpty">上传照片并点击「AI 智能去底色」<br>即可在此实时预览成品</div>
       </div>
       <div class="result-cap" id="resultCap" style="text-align:center">一寸 · 25×35mm · 证件蓝底</div>
@@ -100,11 +102,12 @@
 
 <footer class="site-footer">
   <div class="wrap">
-    <div>© 2026 证照工坊 · 所有处理均在本地浏览器完成，照片不会上传</div>
+    <div>© 2026 证照工坊 · 照片仅在本地浏览器处理，不上传、不保存、无历史记录，下载后 24 小时内自动删除</div>
   </div>
 </footer>
 
 <div class="toast" id="toast"></div>
+<script src="assets/js/privacy.js"></script>
 <script src="assets/js/idphoto.js"></script>
 </body>
 </html>

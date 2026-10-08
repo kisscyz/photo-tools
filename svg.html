@@ -40,6 +40,8 @@
     <span class="step" id="step3"><span class="n">3</span>下载 SVG</span>
   </div>
 
+  <div class="privacy-banner">🔒 <span><b>隐私承诺：</b>本工具纯本地运行，您的图片仅在浏览器内存中处理，<b>不上传服务器、不保存、不记录历史</b>；下载完成后 <b>24 小时内自动彻底删除</b>，可放心使用。</span></div>
+
   <div class="tool-grid">
     <!-- 左：上传 -->
     <section class="panel">
@@ -52,7 +54,7 @@
       </div>
       <div class="preview-box" id="origBox" style="display:none">
         <div class="cap">原始图片预览</div>
-        <img id="origPreview" alt="原始图片">
+        <img id="origPreview" alt="原始图片" data-private>
         <div class="file-info" id="fileInfo"></div>
       </div>
       <div class="grow"></div>
@@ -95,11 +97,12 @@
 
 <footer class="site-footer">
   <div class="wrap">
-    <div>© 2026 证照工坊 · 所有处理均在本地浏览器完成，图片不会上传</div>
+    <div>© 2026 证照工坊 · 图片仅在本地浏览器处理，不上传、不保存、无历史记录，下载后 24 小时内自动删除</div>
   </div>
 </footer>
 
 <div class="toast" id="toast"></div>
+<script src="assets/js/privacy.js"></script>
 <script src="assets/js/svg.js"></script>
 </body>
 </html>

@@ -55,6 +55,7 @@
     if (!/^image\//.test(file.type)) { toast('请选择图片文件', true); return; }
     if (file.size > 5 * 1024 * 1024) { toast('图片超过 5MB，请压缩后重试', true); return; }
     var url = URL.createObjectURL(file);
+    PhotoPrivacy.track(url);
     var img = new Image();
     img.onload = function () {
       state.img = img;
@@ -173,6 +174,7 @@
       a.click();
       setTimeout(function () { document.body.removeChild(a); URL.revokeObjectURL(a.href); }, 500);
       $('step3').classList.add('done');
+      PhotoPrivacy.scheduleAutoDelete();
       toast('✔ .ico 文件已开始下载（' + sizes.join('/') + 'PX）');
     }).catch(function (e) {
       console.error(e);
