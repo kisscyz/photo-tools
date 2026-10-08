@@ -115,6 +115,7 @@ img{max-width:100%}
 
 /* ===== panels ===== */
 .tool-grid{display:grid;grid-template-columns:1.05fr 1fr 1.05fr;gap:22px;align-items:stretch;margin-bottom:34px}
+.tool-grid-wide{grid-template-columns:1fr 1.2fr}
 .col-stack{display:flex;flex-direction:column;gap:22px}
 .panel{
   background:var(--card);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
